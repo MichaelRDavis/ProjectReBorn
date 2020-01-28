@@ -2,10 +2,16 @@
 
 #include "ReBorn_Character.h"
 #include "ReBorn_InventoryItem.h"
+#include "ReBorn_CharacterMovement.h"
+#include "Components/SkeletalMeshComponent.h"
 
 AReBorn_Character::AReBorn_Character()
 {
 	BaseTurnRate = 75.0f;
+
+	GetMesh()->SetCollisionObjectType(ECC_Pawn);
+	GetMesh()->VisibilityBasedAnimTickOption = EVisibilityBasedAnimTickOption::OnlyTickPoseWhenRendered;
+	GetMesh()->bReceivesDecals = false;
 }
 
 void AReBorn_Character::Destroyed()
@@ -34,6 +40,27 @@ void AReBorn_Character::TurnRight(float Rate)
 	{
 		AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
 	}
+}
+
+void AReBorn_Character::Sprint()
+{
+	if (ReBornCharacterMovement)
+	{
+		ReBornCharacterMovement->bIsSprinting = true;
+	}
+}
+
+void AReBorn_Character::StopSprinting()
+{
+	if (ReBornCharacterMovement)
+	{
+		ReBornCharacterMovement->bIsSprinting = false;
+	}
+}
+
+bool AReBorn_Character::IsSprinting() const
+{
+	return ReBornCharacterMovement->bIsSprinting;
 }
 
 void AReBorn_Character::AddItem(TSubclassOf<AReBorn_InventoryItem> ItemToAdd)
@@ -73,4 +100,22 @@ AReBorn_InventoryItem* AReBorn_Character::FindInventoryItem(TSubclassOf<AReBorn_
 void AReBorn_Character::DestroyInventory()
 {
 
+}
+
+void AReBorn_Character::EquipWeapon(AReBorn_Weapon* NewWeapon)
+{
+	if (Weapon)
+	{
+		SwitchWeapon(NewWeapon);
+	}
+}
+
+void AReBorn_Character::SwitchWeapon(AReBorn_Weapon* NewWeapon)
+{
+
+}
+
+AReBorn_Weapon* AReBorn_Character::GetWeapon() const
+{
+	return Weapon;
 }

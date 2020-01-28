@@ -22,7 +22,10 @@ public:
 	AReBorn_Ammo();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Ammo)
-	int32 AmmoAmount;
+	int32 MagazineAmount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Ammo)
+	int32 MagazineCount;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn)
 	EAmmoType AmmoType;
