@@ -6,6 +6,8 @@
 #include "Engine/TriggerBox.h"
 #include "ReBorn_CameraTriggerBox.generated.h"
 
+class AReBorn_CameraActor;
+
 UCLASS()
 class DMC_GAMEPROJECT_API AReBorn_CameraTriggerBox : public ATriggerBox
 {
@@ -19,4 +21,7 @@ public:
 
 	UFUNCTION()
 	void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Trigger)
+	AReBorn_CameraActor* Camera;
 };

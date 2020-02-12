@@ -3,6 +3,7 @@
 #include "ReBorn_Character.h"
 #include "ReBorn_InventoryItem.h"
 #include "ReBorn_CharacterMovement.h"
+#include "ReBorn_PlayerController.h"
 #include "Components/SkeletalMeshComponent.h"
 
 AReBorn_Character::AReBorn_Character()
@@ -118,4 +119,13 @@ void AReBorn_Character::SwitchWeapon(AReBorn_Weapon* NewWeapon)
 AReBorn_Weapon* AReBorn_Character::GetWeapon() const
 {
 	return Weapon;
+}
+
+void AReBorn_Character::SwitchCamera(AActor* NewCamera)
+{
+	AReBorn_PlayerController* Controller = Cast<AReBorn_PlayerController>(GetController());
+	if (Controller)
+	{
+		Controller->SetViewTarget(NewCamera);
+	}
 }

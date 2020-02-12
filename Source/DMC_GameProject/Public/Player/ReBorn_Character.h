@@ -77,6 +77,10 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category=Pawn)
 	AReBorn_Weapon* GetWeapon() const;
 
+	/** Switches player camera view */
+	UFUNCTION(BlueprintCallable, Category=Pawn)
+	virtual void SwitchCamera(AActor* NewCamera);
+
 protected:
 	/** List of item in inventory */
 	UPROPERTY(BlueprintReadOnly, Category=Pawn)
