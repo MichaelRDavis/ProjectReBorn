@@ -66,4 +66,8 @@ public:
 	/** Max range of weapon tracer */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Weapon)
 	float MaxTracerDistance;
+
+	/** Damage applied on hit */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Weapon)
+	int32 HitDamage;
 };

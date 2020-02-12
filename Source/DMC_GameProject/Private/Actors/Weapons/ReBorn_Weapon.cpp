@@ -1,12 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ReBorn_Weapon.h"
+#include "ReBorn_Character.h"
 
 AReBorn_Weapon::AReBorn_Weapon()
 {
 	Ammo = 0;
 	MaxAmmo = 100;
-	FireRate = 0.2f
+	FireRate = 0.2f;
 }
 
 void AReBorn_Weapon::GetAmmo()
@@ -14,7 +15,7 @@ void AReBorn_Weapon::GetAmmo()
 	if (ReBornOwner)
 	{
 		// Retrieves ammo from the players inventory via the ammo class type
-		AReBorn_Ammo* AmmoType = ReBornOwner->FindInventoryItem(AmmoClass);
+		AReBorn_Ammo* AmmoType = Cast<AReBorn_Ammo>(ReBornOwner->FindInventoryItem(AmmoClass));
 		if (AmmoType)
 		{
 			MagazineAmmo = AmmoType->MagazineAmount;
